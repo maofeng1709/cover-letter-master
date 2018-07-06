@@ -1,0 +1,238 @@
+<html>
+	<head>
+		<title> Cover Letter Master -- Mao FENG</title>
+
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<!-- jsPDF library-->
+		<script src="./html2pdf.bundle.js"></script>
+
+
+		<script>
+			$(function(){
+				today = new Date();
+				day = today.getDate();
+				month = today.getMonth() + 1;
+				year = today.getFullYear();
+				$("#date").text(year + '-' + month + '-' + day);
+
+				$("#form_name").on("blur", function(){
+					$("#name").text($(this).val());
+				});
+
+				$("#generate_pdf").on("click", function(){
+					var opt = {
+						margin:       1,
+						filename:     'cover_letter.pdf',
+						image:        {type: 'jpeg', quality:1},
+						html2canvas:  { scale: 4},
+						jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+					};
+					pdf = html2pdf().from($("#cover_letter")[0]).set(opt);
+					pdf.save();
+				});
+				
+			});
+		</script>
+
+		<style>
+
+
+body {
+	text-align: center;
+	line-height: 1.6;
+	width: 65%;
+	margin: auto;
+	font-family: "Times New Roman", Times, serif;
+}
+
+.title {
+	margin-bottom: 30px;
+}
+
+table {
+	width: 100%;
+}
+		</style>
+
+		<body>
+			<div class="container-fluid">
+				<h2 class="title">Cover Letter Master</h2>
+				<form>
+					<div class="row">
+						<div class="form-group col-md-4">
+							<select class="form-control">
+								<option disabled selected>Select templates</option>
+							</select>
+						</div>
+						<div class="col-md-8">
+							<div class="pull-right">
+								<button id="generate_pdf" type="button" class="btn btn-success">Generate PDF</button>
+								<button id="save_template" type="button" class="btn btn-success">Save current as template</button>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label for="form_name">Candidate Information</label>
+							<input class="form-control" type="text" id="form_name" name="form_name" placeholder="name"></input>
+						</div>
+						<div class="form-group col-md-4">
+							<input class="form-control" type="text" name="form_email" placeholder="email"></input>
+						</div>
+						<div class="form-group col-md-4">
+							<input class="form-control" type="text" name="form_phone" placeholder="phone"></input>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<input class="form-control" type="text" name="form_address_1" placeholder="address"></input>
+						</div>
+						<div class="form-group col-md-2">
+							<input class="form-control" type="text" name="form_postcode_1" placeholder="postcode"></input>
+						</div>
+						<div class="form-group col-md-2">
+							<input class="form-control" type="text" name="form_city_1" placeholder="city"></input>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<input class="form-control" type="text" name="form_destination" placeholder="destination"></input>
+						</div>
+						<div class="form-group col-md-6">
+							<input class="form-control" type="text" name="form_title" placeholder="title: i.g. Software Engineer"></input>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<input class="form-control" type="text" name="form_address_2" placeholder="address"></input>
+						</div>
+						<div class="form-group col-md-2">
+							<input class="form-control" type="text" name="form_postcode_2" placeholder="postcode"></input>
+						</div>
+						<div class="form-group col-md-2">
+							<input class="form-control" type="text" name="form_city_2" placeholder="city"></input>
+						</div>
+					</div>
+				</form>
+				<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+				<hr>
+				<table id="cover_letter">
+					<tr>
+						<td class="col-md-3" id="name" contenteditable>name</td>
+						<td class="col-md-6"></td>
+						<td class="col-md-3"></td>
+					</tr>
+					<tr>
+						<td class="col-md-3" id="address" contenteditable>address</td>
+						<td class="col-md-6"></td>
+						<td class="col-md-3"></td>
+					</tr>
+					<tr>
+						<td class="col-md-3" id="postcode_city" contenteditable>postcode, city</td>
+						<td class="col-md-6"></td>
+						<td class="col-md-3"></td>
+					</tr>
+					<tr>
+						<td class="col-md-3" id="email" contenteditable>email</td>
+						<td class="col-md-6"></td>
+						<td class="col-md-3"></td>
+					</tr>
+					<tr>
+						<td class="col-md-3" id="phone" contenteditable>phone</td>
+						<td class="col-md-6"></td>
+						<td class="col-md-3"></td>
+					</tr>
+					<tr>
+						<td class="col-md-3"></td>
+						<td class="col-md-6"></td>
+						<td class="col-md-3" id="destination" contenteditable>destination</td>
+					</tr>
+					<tr>
+						<td class="col-md-3"></td>
+						<td class="col-md-6"></td>
+						<td class="col-md-3" id="destination_address" contenteditable>postcode, city</td>
+					</tr>
+					<tr>
+						<td class="col-md-3"></td>
+						<td class="col-md-6"></td>
+						<td class="col-md-3" id="date" contenteditable></td>
+					</tr>
+					<tr class="saluation">
+						<td class="col-md-12" colspan=3 contenteditable></td>
+					</tr>
+					<tr class="opening">
+						<td class="col-md-12" colspan=3 contenteditable></td>
+					</tr>
+					<tr class="foward_match">
+						<td class="col-md-12" colspan=3 contenteditable></td>
+					</tr>
+					<tr class="backward_match">
+						<td class="col-md-12" colspan=3 contenteditable></td>
+					</tr>
+					<tr class="closing">
+						<td class="col-md-12" colspan=3 contenteditable></td>
+					</tr>
+					<tr class="signature">
+						<td class="col-md-12" colspan=3 contenteditable></td>
+					</tr>
+				</table>
+				<br>
+			</div>
+
+		</body>
+</html>
