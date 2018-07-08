@@ -27,10 +27,10 @@ $(function(){
 
 	$("#generate_pdf").on("click", function(){
 		var opt = {
-			margin:       1,
+			margin:       0.8,
 			filename:     'cover_letter.pdf',
 			image:        {type: 'jpeg', quality:1},
-			html2canvas:  { scale: 4},
+			html2canvas:  { scale: 2},
 			jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
 		};
 		var to_save = $("#cover_letter").clone();
