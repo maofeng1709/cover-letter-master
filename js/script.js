@@ -6,7 +6,7 @@ $(function(){
 	$("#date").text(year + '-' + month + '-' + day);
 
 	form_input_array = ['name', 'email', 'phone', 'address_1', 'postcode_1', 'city_1', 'destination', 'title', 'address_2', 'postcode_2', 'city_2'];
-	letter_content_array = ['saluation', 'opening', 'forward_match', 'backward_match', 'closing'];
+	letter_content_array = ['saluation', 'opening', 'forward_match', 'backward_match', 'closing', 'signature'];
 
 
 	$("#info_form").on('blur', 'input', function(){
@@ -83,46 +83,44 @@ $(function(){
 				var key = letter_content_array[i];
 				$('tr.'+key).find('td').html(obj[key]);
 			}
+			$('#template_input').val(""); // in case upload same file, still fire change event
 		}
 
 		reader.readAsText(event.target.files[0]);
 	});
 
-	function add_destination_ref (destination, content) {
+	function add_ref (str, type, content) {
 		var new_content = "";		
-		var re_destination = new RegExp("(\\s|^|&nbsp;)"+destination,"gi");
-		var indices_destination = [];
-		while (re_destination.exec(content)) {
-			indices_destination.push(re_destination.lastIndex);
-		}
-
-		var start = 0;
-		for (var i=0; i < indices_destination.length; i++) {
-			var index = indices_destination[i];
-			new_content += content.slice(start, index - destination.length) + "<span class='destination-ref'>" + destination + "</span>";
-			start = index;
+		var re = new RegExp("(?<=\\s|^|&nbsp;|<br>)"+str, "gi");
+		var result;
+		var start = re.lastIndex; // start = 0
+		while (result = re.exec(content)) {
+			new_content += content.slice(start, result.index) + "<span class='" + type + "-ref'>" + str + "</span>";
+			start = re.lastIndex;
 		}
 		new_content += content.slice(start);
 		return new_content;
 	}
 
-	function add_title_ref (title, content) {
+	function clean_ref (str, type, content) {
 		var new_content = "";		
-		var re_title = new RegExp('(?<=\\s|^|&nbsp;)'+title,'gi');
-		var indices_title = [];
-		while (re_title.exec(content)) {
-			indices_title.push(re_title.lastIndex);
-		}
-
-		var start = 0;
-		for (var i=0; i < indices_title.length; i++) {
-			var index = indices_title[i];
-			new_content += content.slice(start, index - title.length) + "<span class='title-ref'>" + title + "</span>";
-			start = index;
-		}
+		var re = new RegExp("<span class=('|\")" + type + "-ref('|\")>.*?</span>", "gi");
+		var pre_len = ("<span class='" + type + "-ref'>").length;
+		var post_len = "</span>".length;
+		var result;
+		var start = re.lastIndex; // start = 0
+		while (result = re.exec(content)) {
+			var matched_str = result[0];
+			var target = matched_str.slice(pre_len, matched_str.length - post_len);
+			if (str != target) {
+				new_content += content.slice(start, result.index) + target;	
+				start = re.lastIndex;
+			}
+		}	
 		new_content += content.slice(start);
 		return new_content;
 	}
+
 
 	$('tr.letter-content').on('blur', 'td', function(){
 		var destination = $('#form_destination').val();
@@ -130,11 +128,13 @@ $(function(){
 		var content = $(this).html();
 
 		if (destination) {
-			content = add_destination_ref(destination, content);
+			content = add_ref(destination, 'destination', content);
+			content = clean_ref(destination, 'destination', content);
 		}
 
 		if (title) {
-			content = add_title_ref(title, content);
+			content = add_ref(title, 'title', content);
+			content = clean_ref(title, 'title', content);
 		}
 
 		$(this).html(content);
