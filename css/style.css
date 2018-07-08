@@ -1,0 +1,38 @@
+body {
+	line-height: 1.6;
+	width: 65%;
+	margin: auto;
+	font-family: "Times New Roman", Times, serif;
+}
+
+.title {
+	margin: 30px;
+	text-align: center;
+}
+
+table {
+	width: 100%;
+}
+
+tr.letter-header > td {
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+tr.letter-content > td {
+	padding-top:1em;
+}
+
+
+:root {
+	--destination-color: red;
+	--title-color:blue;
+}
+
+.destination-ref {
+	color: var(--destination-color);
+}
+.title-ref {
+	color: var(--title-color);
+}
+
