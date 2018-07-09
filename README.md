@@ -19,10 +19,10 @@ The compatibility of different browser is not sufficiently tested. Bug report we
 
 
 ## demo
-![](./upload.gif){:width="500px"}_upload template_
-![](./chang_destination.gif){:width="500px"}_change destination_
-![](./edit.gif){:width="500px"}_edit content_
-![](./download.gif){:width="500px"}_download_
+<img src="./upload.gif" width="200px" style="margin:10px">
+<img src="./change_destination.gif" width="200px" style="margin:10px">
+<img src="./edit.gif" width="200px" style="margin:10px">
+<img src="./download.gif" width="200px" style="margin:10px">
 
 ## things to do
 
