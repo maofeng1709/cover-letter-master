@@ -19,10 +19,10 @@ The compatibility of different browser is not sufficiently tested. Bug report we
 
 
 ## demo
-<img src="./upload.gif" width="200px" style="margin:10px">
-<img src="./change_destination.gif" width="200px" style="margin:10px">
-<img src="./edit.gif" width="200px" style="margin:10px">
-<img src="./download.gif" width="200px" style="margin:10px">
+<img src="./upload.gif" width="40%" style="margin:10px;display:inline-block">
+<img src="./change_destination.gif" width="40%" style="margin:10px;display:inline-block">
+<img src="./edit.gif" width="40%" style="margin:10px;display:inline-block">
+<img src="./download.gif" width="40%" style="margin:10px;display:inline-block">
 
 ## things to do
 
